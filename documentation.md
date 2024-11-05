@@ -101,10 +101,9 @@ Jump instructions redirect the flow based on the top value of the stack.
 2. **`JUMP.GT.0 <label>`**  
    Jumps to `<label>` if the top stack value is greater than `0`. If the condition is not met, it moves to the next instruction.
 
-## Example Program
+# Example Programs
 
-Below is an example program, `example1.il`, which compares two input values and prints whether they are equal or not.
-
+## Example 1: Equality Check
 ```plaintext
 READ
 READ
@@ -118,24 +117,90 @@ PRINT "equal"
 HALT
 ```
 
-### Explanation
-1. **READ**: Prompts the user for two inputs, pushing them onto the stack.
-2. **SUB**: Subtracts the second value from the first (checks if they are equal by resulting in `0`).
-3. **JUMP.EQ.0 L1**: If the result of the subtraction is `0`, jumps to `L1`.
-4. **PRINT "not equal"**: If not equal, it prints "not equal".
-5. **L1**: Label that, if jumped to, skips the "not equal" message.
-6. **PRINT "equal"**: Prints "equal" if the values are equal.
-7. **HALT**: Stops execution.
+### Explanation:
+1. **READ**: Prompts the user to input a value and pushes it onto the stack.
+2. **READ**: Prompts for a second input and pushes this value onto the stack.
+3. **SUB**: Pops the top two values, subtracts the second value from the first, and pushes the result.  
+   - If the two inputs are equal, the result will be `0`, indicating equality.
+4. **JUMP.EQ.0 L1**: Checks the top of the stack. If it is `0` (indicating equality), it jumps to label `L1`.
+5. **PRINT "not equal"**: If the jump did not occur, this line prints "not equal," indicating the inputs were different.
+6. **HALT**: Terminates the program.
+7. **L1**: Label marking a jump point.
+8. **PRINT "equal"**: If the inputs were equal, the program jumps here and prints "equal."
+9. **HALT**: Terminates the program.
 
-## Running the Program
+### Sample Outputs:
+- **If inputs are equal**: 
+  - User inputs: `5`, `5`
+  - Output: `equal`
+- **If inputs are not equal**: 
+  - User inputs: `5`, `3`
+  - Output: `not equal`
 
-To run the above example with the interpreter, save it as `example1.il` and use the following command:
+## Example 2: Check Even or Odd
+```plaintext
+READ
+PUSH 1
+ADD
+JUMP.EQ.0 L1
 
-```bash
-python interpreter.py example1.il 1
+LOOP:
+PUSH 2
+SUB
+JUMP.EQ.0 L1
+JUMP.GT.0 LOOP
+PRINT "even"
+HALT
+
+L1:
+PRINT "odd"
+HALT
 ```
 
-- The program will prompt for two inputs.
-- It will output "equal" if the inputs are the same, or "not equal" otherwise.
-- The `1` flag at the end will print the stack after each operation.
 
+### Explanation:
+
+1.  **READ**: Prompts the user to input a value and pushes it onto the stack.
+    
+2.  **PUSH 1**: Pushes `1` onto the stack.
+    
+3.  **ADD**: The program adds `1` to the previously read number (`3 + 1 = 4`). The stack now effectively has `4` (the updated input).
+    
+4.  **JUMP.EQ.0 L1**: This checks if the result (`4`) is equal to `0`. It is not, so it does not jump to `L1`.
+    
+5.  **LOOP**: The program enters the loop labeled `LOOP`.
+    
+6.  **PUSH 2**: Inside the loop, it pushes `2` onto the stack. The stack now has `[2]`.
+    
+7.  **SUB**: The program subtracts `2` from the current value (`4 - 2 = 2`). The value `2` is left on the stack.
+    
+8.  **JUMP.EQ.0 L1**: This checks if the result (`2`) is equal to `0`. It is not, so it does not jump.
+    
+9.  **JUMP.GT.0 LOOP**: This checks if the result (`2`) is greater than `0`. Since it is, the program jumps back to the start of the loop.
+    
+10.  The loop repeats:
+    
+    -   **PUSH 2**: Push `2` onto the stack again.
+    -   **SUB**: Subtract `2` from `2`, resulting in `0`.
+    -   **JUMP.EQ.0 L1**: This time, since the result is `0`, the program jumps to `L1`.
+11.  **PRINT "odd"**: At label `L1`, the program prints "odd" because the original input was `3`, which is odd.
+    
+12.  **HALT**: The program terminates.
+    
+
+### Sample Outputs:
+
+-   **Even Input Example**: For an input of `2`, the flow is as follows:
+    
+    -   Read `2`.
+    -   Increment to `3` (thus checking the parity of `3`).
+    -   Subtract `2` in the loop (resulting in `1`).
+    -   Subtract again (resulting in `-1`, exiting the loop).
+    -   It would end up printing "even".
+-   **Odd Input Example**: For an input of `3`, the flow is as follows:
+    
+    -   Read `3`.
+    -   Increment to `4` (thus checking the parity of `4`).
+    -   Subtract `2` in the loop (resulting in `2`).
+    -   Subtract again (resulting in `0`).
+    -   Since the result is `0`, it jumps to label `L1` to print "odd".
