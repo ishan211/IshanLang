@@ -1,7 +1,0 @@
-Program to evaluate if two numerical inputs are equal, written in IshanLang (.il)
-
-How to run: In CMD, run `python interpreter.py example1.il`
-
-How to use: Input the first number, followed by ENTER. Input the second number followed by ENTER. The Program will then output either 'equal' or 'not equal'
-
-Commands Used: READ, SUB, JUMP.EQ.0, PRINT, HALT
