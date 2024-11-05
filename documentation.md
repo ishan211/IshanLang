@@ -20,7 +20,7 @@ python interpreter.py <program_file> <print_stack>
 ```
 
 - `<program_file>`: Path to the program file (e.g., `example1.il`).
-- `<print_stack>`: Optional flag to print the call stack. Set `1` to print or `0` to disable.
+- `<print_stack>`: Flag to print the call stack. Set `1` to print or `0` to disable.
 
 Example:
 ```bash
