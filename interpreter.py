@@ -1,9 +1,20 @@
 import sys
 
-#read arguments
-program_filepath = sys.argv[1]
+# Check for the correct number of arguments
+if len(sys.argv) != 3:
+    print("Usage: python interpreter.py <file> <print_stack: 1 or 0>")
+    sys.exit(1)
 
-#read file line by line
+# Read arguments
+program_filepath = sys.argv[1]
+print_stack = sys.argv[2]
+
+# Ensure the print_stack argument is valid
+if print_stack not in ("0", "1"):
+    print("Error: print_stack must be 1 or 0.")
+    sys.exit(1)
+
+# Read file line by line
 program_lines = []
 with open(program_filepath, "r") as program_file:
     program_lines = [line.strip() for line in program_file.readlines()]
@@ -15,57 +26,59 @@ for line in program_lines:
     parts = line.split(" ")
     opcode = parts[0]
 
-    #check for empty ln
+    # Check for empty line
     if opcode == "":
         continue
 
-    #check for label
+    # Check for label
     if opcode.endswith(":"):
         label_tracker[opcode[:-1]] = token_counter
         continue    
 
-    #store opcode token
+    # Store opcode token
     program.append(opcode)
     token_counter += 1
 
-    #handle each opcode
+    # Handle each opcode
     if opcode == "PUSH":
-        #expecting number
+        # Expecting number
         number = int(parts[1])
         program.append(number)
         token_counter += 1
     elif opcode == "PRINT":
-        #parse string literal
+        # Parse string literal
         string_literal = ' '.join(parts[1:])[1:-1]
         program.append(string_literal)
         token_counter += 1
     elif opcode == "JUMP.EQ.0":
-        #real label
+        # Real label
         label = parts[1]
         program.append(label)
         token_counter += 1
     elif opcode == "JUMP.GT.0":
-        #real label
+        # Real label
         label = parts[1]
         program.append(label)
         token_counter += 1
     
-    print(program)
+    # Print program if print_stack is set to 1
+    if print_stack == "1":
+        print(program)
 
-    class Stack:
-        def __init__(self,size):
-            self.buf = [0 for _ in range(size)]
-            self.sp    = -1
-        def push(self, number):
-            self.sp += 1
-            self.buf[self.sp] = number
-        def pop(self):
-            number = self.buf[self.sp]
-            self.sp -= 1
-            return number
-        def top(self):
-            return self.buf[self.sp]
-        
+class Stack:
+    def __init__(self, size):
+        self.buf = [0 for _ in range(size)]
+        self.sp = -1
+    def push(self, number):
+        self.sp += 1
+        self.buf[self.sp] = number
+    def pop(self):
+        number = self.buf[self.sp]
+        self.sp -= 1
+        return number
+    def top(self):
+        return self.buf[self.sp]
+
 pc = 0
 stack = Stack(256)
 
@@ -76,7 +89,6 @@ while program[pc] != "HALT":
     if opcode == "PUSH":
         number = program[pc]
         pc += 1
-
         stack.push(number)
     elif opcode == "POP":
         stack.pop()
