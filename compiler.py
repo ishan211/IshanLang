@@ -50,10 +50,12 @@ default rel
 
 out.write("""; -- variables --
 section .bss
+read_number resq 1 ; var to store read num, 64-bit int = 8 bytes
 """)
 
 out.write("""; -- constants --
 section .data
+read_format db "%ld", 0 ; format string for scanf
 """)
 
 for i, string_literal in enumerate(string_literals):
@@ -107,7 +109,11 @@ while ip < len(program):
         out.write(f"\tCALL printf\n")
     elif opcode == "READ":
         out.write(f"; -- READ ---\n")
-        out.write(f"; NOT IMPLEMENTED\n")
+        out.write(f"\tLEA rcx, read_format\n")
+        out.write(f"\tLEA rdx, read_number\n")
+        out.write(f"\tXOR eax, eax\n")
+        out.write(f"\tCALL scanf\n")
+        out.write(f"\tPUSH qword [read_number]\n")
     elif opcode == "JUMP.EQ.0":
         label = program[ip]
         ip += 1
