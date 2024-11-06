@@ -69,7 +69,7 @@ extern printf
 extern scanf
           
 main:
-\tPUSH rpb
+\tPUSH rbp
 \tMOV rbp, rsp
 \tSUB rsp, 32
 """)
@@ -139,9 +139,9 @@ out.write(f'\tCALL ExitProcess\n')
 out.close()
 
 print("[CMD] Assembling")
-os.system(f"nasm -f elf64 {asm_filepath}")
+os.system(f"nasm -f win64 {asm_filepath}")
 print("[CMD] Linking")
-os.system(f"gcc -o {asm_filepath[:-4] + '.exe'} {asm_filepath[:-3] + 'o'}")
+os.system(f"gcc -o {asm_filepath[:-4] + '.exe'} {asm_filepath[:-3] + 'obj'}")
 
 print("[CMD] Running")
 os.system(f"{asm_filepath[:-4] + '.exe'}")
