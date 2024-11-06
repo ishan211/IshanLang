@@ -14,7 +14,7 @@ The language supports labels, conditional jumps, stack operations, arithmetic, a
 
 ## Getting Started
 
-To Install IshanLang 1.0 to your machine, run `git clone `
+To Install IshanLang 1.0 to your machine, run `git clone https://github.com/ishan211/IshanLang.git` and enter the IshanLang directory `cd IshanLang`. 
 
 To run a program written in this language, use the interpreter script `interpreter.py`. The command syntax is:
 ```bash
