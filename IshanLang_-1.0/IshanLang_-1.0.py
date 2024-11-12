@@ -4,7 +4,7 @@
 # Interpreter created Using Python 3.9.6 on 2024-11-12
 #
 # To Interpret IshanLang files (.il)
-# Usage: python IshanLang.py <file> <show_program: 1 or 0> <show_stack: 1 or 0>
+# Usage: python IshanLang_-1.0.py <file> <show_program: 1 or 0> <show_stack: 1 or 0>
 #####################################################################################
 
 
@@ -12,7 +12,7 @@ import sys
 
 # Check for the correct number of arguments
 if len(sys.argv) != 4:
-    print("Usage: python interpreter.py <file> <show_program: 1 or 0> <show_stack: 1 or 0>")
+    print("Usage: python IshanLang_-1.0 <file> <show_program: 1 or 0> <show_stack: 1 or 0>")
     sys.exit(1)
 
 # Read arguments

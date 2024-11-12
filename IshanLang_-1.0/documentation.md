@@ -16,7 +16,7 @@ The language supports labels, conditional jumps, stack operations, arithmetic, a
 
 To run a program written in this language, use the interpreter script `interpreter.py`. The command syntax is:
 ```bash
-python IshanLang.py <program_file> <show_program> <show_stack>
+python IshanLang_-1.0 <program_file> <show_program> <show_stack>
 ```
 
 - `<program_file>`: Path to the program file (e.g., `example1.il`).
