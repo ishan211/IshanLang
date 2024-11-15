@@ -18,4 +18,6 @@ To Install IshanLang 0.0 to your machine, run `git clone https://github.com/isha
 
 Then you can select between Version -1.0 and Version 1.0, each with their own documentation.
 
-Created on: November 10, 2024 By Ishan Leung
+ ### Credits:
+ Created on: November 10, 2024 By Ishan Leung
+ For similar projects and more cool stuff, check out my website at [https://ishanleung.netlify.app/](https://bit.ly/ishanleung) or my GitHub at [https://github.com/ishan211](https://github.com/ishan211).
