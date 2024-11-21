@@ -1,4 +1,4 @@
-# IshanLang |  Language and Interpreter Documentation [0.0 ± 1.0]
+# IshanLang Version [0.0 ± 1.0] |  Language and Interpreter Documentation
 
 ## Overview
 IshanLang is stack-based, assembly style language that runs on most machines. It uses the IshanLang file extension (.il) and is called using CMD Prompt or some other terminal.
