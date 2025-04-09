@@ -1,0 +1,15 @@
+READ
+PUSH 2
+SUB
+JUMP.EQ.0 L1
+JUMP.GT.0 L2
+PRINT "Less than 3"
+HALT
+
+L1:
+PRINT "Equal to 2"
+HALT
+
+L2:
+PRINT "Greater than 2"
+HALT
