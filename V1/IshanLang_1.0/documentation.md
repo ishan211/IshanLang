@@ -205,3 +205,7 @@ HALT
     -   Subtract `2` in the loop (resulting in `2`).
     -   Subtract again (resulting in `0`).
     -   Since the result is `0`, it jumps to label `L1` to print "odd".
+
+ ### Credits:
+ Created on: November 10, 2024 By Ishan Leung
+ For similar projects and more cool stuff, check out my website at [https://ishanleung.netlify.app/](https://bit.ly/ishanleung) or my GitHub at [https://github.com/ishan211](https://github.com/ishan211).
