@@ -1,4 +1,4 @@
-# IshanLang |  Language and Interpreter Documentation [v0.1.0-beta]
+# IshanLang |  Language and Interpreter Documentation [v0.1.5-beta]
 
 ## Overview
 This documentation covers how to use the custom language and interpreter, which operates using a stack-based virtual machine with basic instructions and control flow capabilities. 
@@ -16,7 +16,7 @@ The language supports labels, conditional jumps, stack operations, arithmetic, a
 
 To run a program written in this language, use the interpreter script `interpreter.py`. The command syntax is:
 ```bash
-python interpreter.py <program_file> <show_program> <show_stack>
+python IshanLeung_0.1.5-beta.py <program_file> <show_program> <show_stack>
 ```
 
 - `<program_file>`: Path to the program file (e.g., `example1.il`).
@@ -25,7 +25,7 @@ python interpreter.py <program_file> <show_program> <show_stack>
 
 Example:
 ```bash
-python interpreter.py example1.il 1
+python IshanLeung_0.1.5-beta.py example1.il 1
 ```
 
 ## Syntax
@@ -207,5 +207,5 @@ HALT
     -   Since the result is `0`, it jumps to label `L1` to print "odd".
 
  ### Credits:
- Created on: November 10, 2024 By Ishan Leung
+ Created By Ishan Leung
  For similar projects and more cool stuff, check out my website at [https://ishanleung.netlify.app/](https://bit.ly/ishanleung) or my GitHub at [https://github.com/ishan211](https://github.com/ishan211).
