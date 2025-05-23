@@ -12,6 +12,7 @@ typedef enum {
     TOK_PUSH_INT, TOK_PUSH_STR, TOK_PUSH_DBL,
     TOK_READ_INT, TOK_READ_STR, TOK_READ_DBL,
     TOK_ADD, TOK_SUB, TOK_POP, TOK_SWAP,
+    TOK_MUL, TOK_DIV, TOK_EXP, TOK_MOD,
     TOK_STORE, TOK_LOAD, TOK_PULL,
     TOK_CONV,
     TOK_PRINT,
@@ -24,7 +25,7 @@ typedef enum {
 
 typedef struct {
     TokenType type;
-    char* lexeme;   // The string contents of token
+    char* lexeme;   // The string contents of the token
 } Token;
 
 typedef struct {

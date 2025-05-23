@@ -1,0 +1,4 @@
+PUSH.STR "hello "
+PUSH.STR "world"
+STR.CONCAT
+PRINT

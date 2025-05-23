@@ -1,0 +1,46 @@
+PUSH.INT 5
+STORE n
+
+PUSH.INT 1
+STORE result
+
+[fact_loop]
+LOAD n
+JMP.EQ.0 end
+
+LOAD result
+STORE multiplicand
+
+LOAD n
+STORE counter
+
+PUSH.INT 0
+STORE temp_res
+
+[mul_loop]
+LOAD temp_res
+LOAD multiplicand
+ADD
+STORE temp_res
+
+LOAD counter
+PUSH.INT 1
+SUB
+STORE counter
+
+LOAD counter
+JMP.GT.0 mul_loop
+
+LOAD temp_res
+STORE result
+
+LOAD n
+PUSH.INT 1
+SUB
+STORE n
+
+JMP.GT.0 fact_loop
+
+[end]
+LOAD result
+PRINT

@@ -27,10 +27,6 @@ static void add_instr(AST* ast, Instruction instr) {
     ast->items[ast->count++] = instr;
 }
 
-static Token* peek(TokenList* tokens, int* i) {
-    return &tokens->tokens[*i];
-}
-
 static Token* next(TokenList* tokens, int* i) {
     return &tokens->tokens[(*i)++];
 }
@@ -41,6 +37,7 @@ AST* parse_tokens(TokenList* tokens) {
     while (tokens->tokens[i].type != TOK_EOF) {
         Token* tok = next(tokens, &i);
         Instruction instr = {0};
+
         switch (tok->type) {
             case TOK_PUSH_INT:
                 instr.type = AST_PUSH_INT;
@@ -59,6 +56,10 @@ AST* parse_tokens(TokenList* tokens) {
             case TOK_READ_DBL:  instr.type = AST_READ_DBL; break;
             case TOK_ADD:       instr.type = AST_ADD; break;
             case TOK_SUB:       instr.type = AST_SUB; break;
+            case TOK_MUL:       instr.type = AST_MUL; break;
+            case TOK_DIV:       instr.type = AST_DIV; break;
+            case TOK_EXP:       instr.type = AST_EXP; break;
+            case TOK_MOD:       instr.type = AST_MOD; break;
             case TOK_POP:       instr.type = AST_POP; break;
             case TOK_SWAP:      instr.type = AST_SWAP; break;
             case TOK_STORE:
@@ -104,10 +105,6 @@ AST* parse_tokens(TokenList* tokens) {
             case TOK_DBL:
             case TOK_STR:
             case TOK_IDENT:
-                // If token doesn't match any keyword, report error.
-                printf("Unexpected token: %s\n", tok->lexeme);
-                exit(1);
-                break;
             default:
                 printf("Unexpected token: %s\n", tok->lexeme);
                 exit(1);

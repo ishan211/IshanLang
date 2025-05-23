@@ -1,10 +1,8 @@
-/*
-Title: Lexical Analyzer Implementation
-Name: lexer.c
-Author: Ishan Leung
-Language: C23
-Description: Implements tokenization functions for a stack-based language compiler
-*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include "lexer.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,6 +38,10 @@ static TokenType match_keyword(const char* word) {
     if (strcmp(word, "READ.DBL") == 0) return TOK_READ_DBL;
     if (strcmp(word, "ADD") == 0) return TOK_ADD;
     if (strcmp(word, "SUB") == 0) return TOK_SUB;
+    if (strcmp(word, "MUL") == 0) return TOK_MUL;
+    if (strcmp(word, "DIV") == 0) return TOK_DIV;
+    if (strcmp(word, "EXP") == 0) return TOK_EXP;
+    if (strcmp(word, "MOD") == 0) return TOK_MOD;
     if (strcmp(word, "POP") == 0) return TOK_POP;
     if (strcmp(word, "SWAP") == 0) return TOK_SWAP;
     if (strcmp(word, "STORE") == 0) return TOK_STORE;
@@ -97,7 +99,7 @@ TokenList* tokenize(const char* source) {
         }
         buffer[j] = '\0';
 
-        if (j == 0) continue; // Skip empty tokens
+        if (j == 0) continue;
 
         TokenType type = match_keyword(buffer);
         if (type != -1) {

@@ -13,6 +13,7 @@ typedef enum {
     AST_PUSH_INT, AST_PUSH_STR, AST_PUSH_DBL,
     AST_READ_INT, AST_READ_STR, AST_READ_DBL,
     AST_ADD, AST_SUB, AST_POP, AST_SWAP,
+    AST_MUL, AST_DIV, AST_EXP, AST_MOD,
     AST_STORE, AST_LOAD,
     AST_CONV,
     AST_PULL,
@@ -25,7 +26,7 @@ typedef enum {
 
 typedef struct {
     InstrType type;
-    char* str_val;      // For strings, variable names, conversion, label names or jump targets
+    char* str_val;      // For strings, variable names, conversions, label names or jump targets
     int int_val;        // For integer literals
     double dbl_val;     // For double literals
     char* arg1;         // For PULL (source)

@@ -1,3 +1,11 @@
+/*
+Title: Bytecode Instruction Definitions
+Name: bytecode.h
+Author: Ishan Leung
+Language: C23
+Description: Defines bytecode operation codes and conversion types for the virtual machine
+*/
+
 #pragma once
 // Bytecode instruction opcodes
 typedef enum {
@@ -14,6 +22,10 @@ typedef enum {
     OP_SUB         = 0x22,
     OP_POP         = 0x23,
     OP_SWAP        = 0x24,
+    OP_MUL         = 0x25,
+    OP_DIV         = 0x26,
+    OP_EXP         = 0x27,
+    OP_MOD         = 0x28,
 
     OP_STORE       = 0x30,
     OP_LOAD        = 0x31,
@@ -23,8 +35,7 @@ typedef enum {
     OP_JMP_GT0     = 0x41,
     OP_JMP         = 0x42,
 
-    // OP_LABEL isn't emitted (labels are used only for resolving jumps)
-    OP_LABEL       = 0x50,
+    OP_LABEL       = 0x50, // Not emitted
 
     OP_PRINT       = 0x60,
     OP_STR_CONCAT  = 0x61,

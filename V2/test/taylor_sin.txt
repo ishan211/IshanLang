@@ -1,0 +1,67 @@
+PUSH.DBL 1.0
+STORE x
+
+LOAD x
+STORE counter
+PUSH.DBL 0.0
+STORE xsq
+
+[sq_loop]
+LOAD xsq
+LOAD x
+ADD
+STORE xsq
+
+LOAD counter
+PUSH.DBL 1.0
+SUB
+STORE counter
+LOAD counter
+JMP.GT.0 sq_loop
+
+LOAD x
+STORE counter
+PUSH.DBL 0.0
+STORE xcubed
+
+[cube_loop]
+LOAD xcubed
+LOAD xsq
+ADD
+STORE xcubed
+
+LOAD counter
+PUSH.DBL 1.0
+SUB
+STORE counter
+LOAD counter
+JMP.GT.0 cube_loop
+
+LOAD xcubed
+STORE numerator
+PUSH.DBL 6.0
+STORE denominator
+PUSH.DBL 0.0
+STORE division_result
+
+[div_loop]
+LOAD numerator
+LOAD denominator
+SUB
+STORE numerator
+
+LOAD division_result
+PUSH.DBL 1.0
+ADD
+STORE division_result
+
+LOAD numerator
+JMP.GT.0 div_loop
+
+LOAD x
+LOAD division_result
+SUB
+STORE sinx
+
+LOAD sinx
+PRINT

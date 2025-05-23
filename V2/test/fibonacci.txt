@@ -1,0 +1,28 @@
+PUSH.INT 0
+STORE a
+PUSH.INT 1
+STORE b
+PUSH.INT 6
+STORE count
+
+[loop]
+LOAD a
+PRINT
+
+LOAD a
+LOAD b
+ADD
+STORE temp
+
+LOAD b
+STORE a
+
+LOAD temp
+STORE b
+
+LOAD count
+PUSH.INT 1
+SUB
+STORE count
+LOAD count
+JMP.GT.0 loop
